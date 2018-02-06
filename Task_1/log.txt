@@ -1,0 +1,11 @@
+commit aa78c3e83561e9f9594dd8ee568ca8dd02d6fc72
+Author: Vladimir <vladimir.deikun1999@gmail.com>
+Date:   Tue Feb 6 22:10:25 2018 +0300
+
+    add status.txt
+
+commit 077736d28b218fe460a088be92a6aae56dee4c8c
+Author: Vladimir <vladimir.deikun1999@gmail.com>
+Date:   Tue Feb 6 22:06:18 2018 +0300
+
+    add .gitignore
