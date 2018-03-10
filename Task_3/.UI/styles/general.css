@@ -1,0 +1,24 @@
+.page-font {
+	font-family: calibri;
+	-webkit-text-stroke-color: brown;
+}
+
+* {
+	border-radius: 5px;
+}
+
+img.adaptive {
+	border: 1px solid #AABB2F;
+
+	width: 100%;
+	height: auto;
+}
+
+button {
+	background-color: rgb(73, 135, 89);
+	border-style: none;
+}
+button:hover {
+	background-color: rgb(41, 242, 91);
+	border-color: rgb(41, 242, 91);
+}

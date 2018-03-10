@@ -1,0 +1,146 @@
+div.post {
+	background: rgba(230, 252, 63, 0.5);
+
+	padding: 1em;
+
+	width: 80%;
+
+	overflow: auto;
+
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+div.hashtags {
+	background-color: rgba(204, 212, 125, 0.5);
+	border: 1px solid #AABB2F;
+
+	padding: 0px 0px;
+
+	float: left;
+
+	width: 65%;
+
+	margin-bottom: 1%;
+}
+
+
+div.menu-block {
+	background-color: rgba(204, 212, 125, 0.5);
+	border: 1px solid #AABB2F;
+
+	position: relative;
+    display: inline-block;
+
+	float: right;
+
+	min-width: 50px;
+	width: 10%;
+	height: auto;
+
+	margin-right: 5%;
+	text-align: center;
+}
+div.menu-dropdown {
+	border: 1px solid #AABB2F;
+	background-color: #ffffff;
+
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+
+	display: none;
+    position: absolute;
+    z-index: 1;
+
+    min-width: 60px;
+    width: auto;
+    height: auto;
+    text-align: left;
+}
+div.menu-dropdown a {
+	color: black;
+    padding: 5px 5px;
+    text-decoration: none;
+
+    display: block;
+}
+div.menu-block a:hover {
+	background-color: rgba(180, 180, 180, 0.5);
+}
+div.menu-block:hover {
+	background-color: rgb(41, 242, 91);
+}
+div.menu-block:hover div.menu-dropdown {
+	 display: block;
+}
+
+
+div.post-image-block {
+	clear:both;
+
+	display: inline-block;
+    position: relative;
+
+	margin-top: 1%;
+	margin-bottom: 1%;
+
+	width: 70%;
+	height: auto;
+}
+div.post-image-block:hover::after {
+	content: attr(likes);
+    position: absolute;
+    left: 0; right: 0; bottom: 0px;
+    z-index: 1;
+    background: rgba(0,255,102,0.6);
+
+    color: #fff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1em; 
+
+    padding: 5px 5px;
+    border: 1px solid #333;
+}
+
+div.description {
+	border: 1px solid #AABB2F;
+	background-color: rgb(204, 212, 125);
+
+	clear: both;
+	float: left;
+
+	width: 65%;
+
+	margin-bottom: 1%;
+}
+
+
+div.like {
+	float: right;
+
+	width: 7%;
+	height: auto;
+}
+div.like:hover img {
+	border: 2px solid rgba(190, 190, 190, 0.6);
+}
+
+div.author-date {
+	background-color: rgb(204, 212, 125);
+	border: 1px solid #AABB2F;
+
+	width: 60%;
+
+	text-align: center;
+
+	clear: both;
+
+	margin-top: 1%;
+	margin-bottom: 1%;
+
+	margin-left: auto;
+	margin-right: auto;
+}

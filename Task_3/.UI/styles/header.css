@@ -1,0 +1,50 @@
+header {
+	background: linear-gradient(to bottom right, red, yellow);
+	padding: 5px;
+
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+
+div.logo-ico {
+	width: 9%;
+	height: auto;
+
+	margin-top: auto;
+	margin-bottom: auto;
+}
+img.ico {	
+	width: 100%;
+	height: auto;
+}
+
+
+div.logo {
+	padding: 5px;
+	
+	width: 60%;
+
+	text-align: center;
+}
+
+
+h1.page-logo {
+	font-family: impact;
+	-webkit-text-stroke-width: 5px;
+	-webkit-text-stroke-color: white;
+
+	font-size: 3.3em;
+	text-align: center;
+}
+
+
+div.account-info {
+	padding: 5px;
+
+	overflow: auto;
+}
+button.log-out {
+	margin-left: 20%;
+}
