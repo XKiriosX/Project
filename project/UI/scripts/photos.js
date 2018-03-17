@@ -1,7 +1,7 @@
 "use strict"
 
-;var postWork = (function(){
-
+;var PostWork = (function()
+{
     var posts = 
     [
         {
@@ -15,14 +15,6 @@
             deleted: false,
         }
     ];
-
-    var getPhotoPosts;
-    var getPhotoPost;
-    var validatePhotoPost;
-    var addPhotoPost;
-    var editPhotoPost;
-    var removePhotoPost;
-    var removePhotoPostHard;
 
     function checkNumberParam(param, defaultValue)
     {
@@ -66,7 +58,7 @@
         return result;
     }
 
-    getPhotoPosts = function(skip, top, filter)
+    function getPhotoPosts(skip, top, filter)
     {
         var result;
 
@@ -127,7 +119,7 @@
     }
 
 
-    getPhotoPost = function(id)
+    function getPhotoPost(id)
     {
         return posts.find(function(post) 
         {
@@ -136,7 +128,7 @@
     }
 
 
-    validatePhotoPost = function(postToCheck)
+    function validatePhotoPost(postToCheck)
     {
         return "id" in postToCheck &&
                typeof postToCheck.id == "string" &&
@@ -169,7 +161,7 @@
     }
 
 
-    addPhotoPost = function(post)
+    function addPhotoPost (post)
     {
         if (validatePhotoPost(post))
         {
@@ -181,7 +173,7 @@
     }
 
 
-    editPhotoPost = function(id, photoPost)
+    function editPhotoPost(id, photoPost)
     {
         var toEdit;
         var temp;
@@ -218,7 +210,7 @@
         return false;
     }
 
-    removePhotoPost = function(id)
+    function removePhotoPost(id)
     {
         var found;
 
@@ -229,7 +221,7 @@
         }
     }
     
-    removePhotoPostHard = function(id) 
+    function removePhotoPostHard(id) 
     {
         var found;
 
@@ -241,13 +233,13 @@
     }
 
     return {
-              getPhotoPosts: getPhotoPosts,
-               getPhotoPost: getPhotoPost,
-          validatePhotoPost: validatePhotoPost,
-               addPhotoPost: addPhotoPost,
-              editPhotoPost: editPhotoPost,
-            removePhotoPost: removePhotoPost,
-        removePhotoPostHard: removePhotoPostHard,
+        getPhotoPosts,
+        getPhotoPost,
+        validatePhotoPost,
+        addPhotoPost,
+        editPhotoPost,
+        removePhotoPost,
+        removePhotoPostHard,
     }
 })();
     
