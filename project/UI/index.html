@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="styles/header.css">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <link rel="stylesheet" type="text/css" href="styles/footer.css">
+
+        <link rel="stylesheet" type="text/css" href="styles/post.css">
+        <link rel="stylesheet" type="text/css" href="styles/general.css">
+
+        <link rel="shortcut icon" type="image/jpg" href="pictures/knucles.jpg">
+
+
+        <script src="scripts/photos.js"></script>
+
+		<title>Memesdise</title>
+	</head>
+
+	<body class="page-font">
+        <header>
+            <div class="logo-ico">
+                <img class="ico" src="pictures/yoba-red.png" alt="logo-ico">
+            </div>
+
+            <div class="logo">
+                <h1 class="page-logo">Memesdise</h1>
+            </div>
+
+            <div class="account-info">
+                <form>
+                    <p><solid>Account: admin</solid></p>
+                    <button class="log-out">log out</button>
+                </form>
+            </div>
+        </header>
+
+        <hr>
+
+        <main>
+            <div class="filter">
+                <solid>Filter</solid>
+                <form class="filter-form">
+                    <input type="checkbox" id="author-check"> Author<br>
+                    <textarea id="author-field"></textarea><br>
+
+                    <input type="checkbox" id="date-check"> Date<br>                    
+                    <textarea id="date-field"></textarea><br>
+                    
+                    <input type="checkbox" id="hashtag-check"> Hashtag<br>
+                    <textarea id="hashtag-field"></textarea><br>
+
+                    <input type="submit" value="Set filter">
+                    <input type="reset" value="Reset filter">
+                </form>
+            </div>
+
+            <div class="contents">
+                <button class="add-new">Share your meme...</button>
+
+                <div class="wall">
+
+                    <div class="post">
+                        No posts available.
+                    </div>
+
+                    <div class="post">
+                        <div class="hashtags">
+                            <p>#hashtag #hashtag #hashtag #hashtag #hashtag #hashtag #hashtag #hashtag</p>
+                        </div>
+                        <div class="menu-block">
+                            Menu
+                            <div class="menu-dropdown">
+                                <a href="#" class="menu-element">Edit</a>
+                                <a href="#" class="menu-element">Delete</a>
+                            </div>
+                        </div>
+                        <div class="post-image-block" likes="12345 likes">
+                            <img class="adaptive post-image" src="pictures/uganda.png" alt="uganda-flag">
+                        </div>
+                        <div class="description">
+                            <p>Description Description Description Description Description Description escription</p>
+                        </div>
+                        <div class="author-date"><p>Added by Admin at 5.03.2018</p></div> 
+                        <div class="like">
+                            <img class="adaptive" src="pictures/like.png" alt="like">
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="load-more">load 10 more</button>
+            </div>
+        </main>
+
+        <hr>
+
+        <footer class="post-">
+            <p>portal Memesdise</p>
+            <p>Vladimir Deikun, 2 course 6 group</p>
+            <p>Contacts: vladimir.deikun1999@gmail.com</p>
+            <p>Last changed: March 2018 </p>
+        </footer>
+    
+</body>
+
+</html>

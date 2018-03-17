@@ -7,6 +7,9 @@ div.post {
 
 	overflow: auto;
 
+	min-width: 200px;
+	min-height: 75px;
+
 	margin-top: 1%;
 	margin-bottom: 1%;
 	margin-left: auto;
@@ -94,15 +97,15 @@ div.post-image-block:hover::after {
     position: absolute;
     left: 0; right: 0; bottom: 0px;
     z-index: 1;
-    background: rgba(0,255,102,0.6);
+
+    background: rgba(200, 220, 220, 0.7);
+    padding: 5px 5px;
+    border: 1px solid #333;
 
     color: #fff;
     text-align: center;
     font-family: Arial, sans-serif;
     font-size: 1em; 
-
-    padding: 5px 5px;
-    border: 1px solid #333;
 }
 
 div.description {
@@ -118,16 +121,6 @@ div.description {
 }
 
 
-div.like {
-	float: right;
-
-	width: 7%;
-	height: auto;
-}
-div.like:hover img {
-	border: 2px solid rgba(190, 190, 190, 0.6);
-}
-
 div.author-date {
 	background-color: rgb(204, 212, 125);
 	border: 1px solid #AABB2F;
@@ -137,10 +130,22 @@ div.author-date {
 	text-align: center;
 
 	clear: both;
+	float: left;
 
 	margin-top: 1%;
 	margin-bottom: 1%;
 
 	margin-left: auto;
 	margin-right: auto;
+}
+
+
+div.like {
+	float: right;
+
+	width: 7%;
+	height: auto;
+}
+div.like:hover img {
+	border: 2px solid rgba(190, 190, 190, 0.6);
 }

@@ -1,10 +1,10 @@
 main {
 	padding: 5px;
 
-	height: 35vw;
-
 	display: flex;
 	justify-content: space-around;
+
+	overflow: auto;
 }
 
 
@@ -75,6 +75,7 @@ div.contents {
 	padding: 1%;
 
 	width: 55%;
+	height: 35vw;
 
 	margin-right: 17%;
 
