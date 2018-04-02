@@ -1,4 +1,4 @@
-.page-font {
+* {
 	font-family: calibri;
 	-webkit-text-stroke-color: brown;
 }
@@ -7,7 +7,7 @@
 	border-radius: 5px;
 }
 
-img.adaptive {
+img {
 	border: 1px solid #AABB2F;
 
 	width: 100%;

@@ -1,3 +1,11 @@
+.hui
+{
+	background-color: rgba(32, 32, 32, 0.9);
+	position: absolute;
+	width: 100vw; 
+	height: 100vw;
+}
+
 header {
 	background: linear-gradient(to bottom right, red, yellow);
 	padding: 5px;
@@ -16,8 +24,7 @@ div.logo-ico {
 	margin-bottom: auto;
 }
 img.ico {	
-	width: 100%;
-	height: auto;
+	border: none;
 }
 
 
@@ -45,6 +52,6 @@ div.account-info {
 
 	overflow: auto;
 }
-button.log-out {
+button.log-button {
 	margin-left: 20%;
 }

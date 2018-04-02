@@ -1,65 +1,66 @@
 "use strict"
 
-;var PostWork = (function()
+;var Post = (function()
 {
     var posts = 
     [
         {
             id: "0",
-            description: "",
+            description: "JPEG",
             createdAt: new Date(2018, 2, 22),
             author: "aaa",
-            photoLink: "",
+            photoLink: "https://files.telegram-store.com/files/stickers/21/211f/211f47979136a25d9255903ebd29e6b6.png",
             hashtags: ["#pepe", "#very-rare-pepe"],
             liked: ["admin"],
             deleted: false,
         }
     ];
 
-    function checkNumberParam(param, defaultValue)
-    {
-        if(typeof param != "number")
-        {
-            return defaultValue;
-        }
-        return param;
-    }
-
-    function checkIntervalsArray(intervals)
-    {
-        var result;
-        var left;
-        var right;
-
-        result = [];
-        for(let i = 0; i < intervals.length; i++)
-        {
-            if(Array.isArray(intervals[i]))
-            {
-                if( intervals[i][0] instanceof Date &&
-                    intervals[i][1] instanceof Date)
-                {
-                    result.push(intervals[i]);
-                }
-            }
-            else if(intervals[i] instanceof Date)
-            {
-                left = intervals[i];
-                left.setHours(0);
-                left.setMinutes(0);
-                left.setSeconds(0);
-                left.setMilliseconds(0);
-
-                right = new Date(left.getTime() + 86400000);
-
-                result.push([left, right]);
-            }
-        }
-        return result;
-    }
-
+    
     function getPhotoPosts(skip, top, filter)
     {
+        function checkNumberParam(param, defaultValue)
+        {
+            if(typeof param !== "number")
+            {
+                return defaultValue;
+            }
+            return param;
+        }
+
+        function checkIntervalsArray(intervals)
+        {
+            var result;
+            var left;
+            var right;
+
+            result = [];
+            for(let i = 0; i < intervals.length; i++)
+            {
+                if(Array.isArray(intervals[i]))
+                {
+                    if( intervals[i][0] instanceof Date &&
+                        intervals[i][1] instanceof Date)
+                    {
+                        result.push(intervals[i]);
+                    }
+                }
+                else if(intervals[i] instanceof Date)
+                {
+                    left = intervals[i];
+                    left.setHours(0);
+                    left.setMinutes(0);
+                    left.setSeconds(0);
+                    left.setMilliseconds(0);
+
+                    right = new Date(left.getTime() + 86400000);
+
+                    result.push([left, right]);
+                }
+            }
+            return result;
+        }
+
         var result;
 
         skip = checkNumberParam(skip, 0);
@@ -130,33 +131,82 @@
 
     function validatePhotoPost(postToCheck)
     {
-        return "id" in postToCheck &&
+        function isValid(check)
+        {
+            return check !== null && typeof check !== "undefined";
+        }
+
+               /*console.log("id" in postToCheck &&
+               isValid(postToCheck.id) &&
                typeof postToCheck.id == "string" &&
+               !posts.find(function(post){return postToCheck.id == post.id}));
+
+               console.log("description" in postToCheck &&
+               isValid(postToCheck.description) &&
+               typeof postToCheck.description == "string" &&
+               postToCheck.description.length <= 200);
+
+               console.log("author" in postToCheck &&
+               isValid(postToCheck.author) &&
+               typeof postToCheck.author == "string" && 
+               postToCheck.author.length != 0);
+
+               console.log("photoLink" in postToCheck &&
+               isValid(postToCheck.photoLink) &&
+               typeof postToCheck.photoLink == "string");
+
+               console.log("createdAt" in postToCheck &&
+               isValid(postToCheck.createdAt) &&
+               postToCheck.createdAt instanceof Date && 
+               postToCheck.createdAt.toString() != "Invalid Date");
+
+               console.log("hashtags" in postToCheck &&
+               isValid(postToCheck.hashtags) &&
+               Array.isArray(postToCheck.hashtags));
+
+               console.log("liked" in postToCheck && 
+               isValid(postToCheck.liked) &&
+               Array.isArray(postToCheck.liked));
+
+               console.log("deleted" in postToCheck &&
+               isValid(postToCheck.deleted) &&
+               typeof postToCheck.deleted == "boolean");*/
+
+
+        return "id" in postToCheck &&
+               isValid(postToCheck.id) &&
+               typeof postToCheck.id === "string" &&
                !posts.find(function(post){return postToCheck.id == post.id}) &&
 
                "description" in postToCheck &&
-               typeof postToCheck.description == "string" &&
-               postToCheck.description.length > 0 &&
+               isValid(postToCheck.description) &&
+               typeof postToCheck.description === "string" &&
                postToCheck.description.length <= 200 &&
 
                "author" in postToCheck &&
-               typeof postToCheck.author == "string" && 
+               isValid(postToCheck.author) &&
+               typeof postToCheck.author === "string" && 
                postToCheck.author.length != 0 &&
 
                "photoLink" in postToCheck &&
-               typeof postToCheck.photoLink == "string" && 
+               isValid(postToCheck.photoLink) &&
+               typeof postToCheck.photoLink === "string" && 
 
                "createdAt" in postToCheck &&
+               isValid(postToCheck.createdAt) &&
                postToCheck.createdAt instanceof Date && 
                postToCheck.createdAt.toString() != "Invalid Date" &&
 
                "hashtags" in postToCheck &&
+               isValid(postToCheck.hashtags) &&
                Array.isArray(postToCheck.hashtags) &&
 
-               "liked" in postToCheck &&
+               "liked" in postToCheck && 
+               isValid(postToCheck.liked) &&
                Array.isArray(postToCheck.liked) &&
 
                "deleted" in postToCheck &&
+               isValid(postToCheck.deleted) &&
                typeof postToCheck.deleted == "boolean";
     }
 
@@ -167,9 +217,9 @@
         {
             post.deleted = false;
             posts.push(post);
-            return true
+            return true;
         }
-        return false
+        return false;
     }
 
 
@@ -182,13 +232,12 @@
         if(toEdit)
         {
             if("description" in photoPost && 
-                typeof photoPost.description == "string" &&
-                photoPost.description.length > 0 &&
+                typeof photoPost.description === "string" &&
                 photoPost.description.length <= 200)
             {
                 toEdit.description = photoPost.description;
             }
-            if("photoLink" in photoPost && typeof photoPost.photoLink == "string")
+            if("photoLink" in photoPost && typeof photoPost.photoLink === "string")
             {
                 toEdit.photoLink = photoPost.photoLink;
             }
@@ -197,7 +246,7 @@
                 temp = [];
                 for(let hashtag of photoPost.hashtags)
                 {
-                    if(typeof hashtag == "string" && hashtag.length > 1)
+                    if(typeof hashtag === "string" && hashtag.length > 1)
                     {
                         temp.push(hashtag);
                     }
@@ -218,7 +267,9 @@
         if(found != -1)
         {
             posts[found].deleted = true;
+            return true;
         }
+        return false;
     }
     
     function removePhotoPostHard(id) 
@@ -229,13 +280,14 @@
         if(found != -1)
         {
             posts.splice(found, 1);
+            return true;
         }
+        return false;
     }
 
     return {
         getPhotoPosts,
         getPhotoPost,
-        validatePhotoPost,
         addPhotoPost,
         editPhotoPost,
         removePhotoPost,
