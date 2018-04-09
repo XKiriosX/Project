@@ -1,18 +1,17 @@
-"use strict"
+'use strict'
 
 ;var Post = (function()
 {
     var posts = 
     [
         {
-            id: "0",
-            description: "JPEG",
+            id: '0',
+            description: 'JPEG',
             createdAt: new Date(2018, 2, 22),
-            author: "aaa",
-            photoLink: "https://files.telegram-store.com/files/stickers/21/211f/211f47979136a25d9255903ebd29e6b6.png",
-            hashtags: ["#pepe", "#very-rare-pepe"],
-            liked: ["admin"],
-            deleted: false,
+            author: 'aaa',
+            photoLink: 'https://im0-tub-by.yandex.net/i?id=31ee18c9d3061e6d4c8cc6a75ead9115&n=13',
+            hashtags: ['#pepe', '#very-rare-pepe'],
+            liked: ['admin'],
         }
     ];
 
@@ -21,92 +20,57 @@
     {
         function checkNumberParam(param, defaultValue)
         {
-            if(typeof param !== "number")
+            if(typeof param !== 'number')
             {
                 return defaultValue;
             }
             return param;
         }
 
-        function checkIntervalsArray(intervals)
-        {
-            var result;
-            var left;
-            var right;
+        var result;
 
-            result = [];
-            for(let i = 0; i < intervals.length; i++)
+        skip = checkNumberParam(skip, 0);
+        top  = checkNumberParam(top, 10);
+        skip = (skip > -1 && skip < top) ? skip : 0; 
+
+        if(!filter)
+        {
+            result = posts.slice(skip, top);    
+        }
+        else
+        {
+            if (Array.isArray(filter.authors)) 
             {
-                if(Array.isArray(intervals[i]))
+                result = posts.filter(function(post) 
                 {
-                    if( intervals[i][0] instanceof Date &&
-                        intervals[i][1] instanceof Date)
-                    {
-                        result.push(intervals[i]);
-                    }
-                }
-                else if(intervals[i] instanceof Date)
-                {
-                    left = intervals[i];
+                    return filter.authors.indexOf(post.author) !== -1;
+                });
+            }
+
+            if (filter.date instanceof Date) 
+            {
+                var left = new Date(filter.date);
                     left.setHours(0);
                     left.setMinutes(0);
                     left.setSeconds(0);
                     left.setMilliseconds(0);
 
-                    right = new Date(left.getTime() + 86400000);
-
-                    result.push([left, right]);
-                }
-            }
-            return result;
-        }
-
-        var result;
-
-        skip = checkNumberParam(skip, 0);
-        top  = checkNumberParam(top, 10);
-        top = top >= 0 ? top : 10;
-
-        if(!filter)
-        {
-            result = posts.slice(skip, skip + top);    
-        }
-        else
-        {
-            if ("authors" in filter && Array.isArray(filter.authors)) 
-            {
-                result = posts.filter(function(post) 
-                {
-                    return !post.deleted && filter.authors.indexOf(post.author) != -1;
-                });
-            }
-
-            if ("intervals" in filter && Array.isArray(filter.intervals)) 
-            {
-                filter.intervals = checkIntervalsArray(filter.intervals);
+                var right = new Date(left.getTime() + 86400000);
 
                 result = posts.filter(function(post)
                 {
-                    for(let interval of filter.intervals)
-                    {
-                        if( !post.deleted &&
-                            interval[0].getTime() <= post.createdAt.getTime() && 
-                            interval[1].getTime() >= post.createdAt.getTime())
-                        {
-                            return true;
-                        }
-                    }
-                    return false;
+                  return left.getTime() <= post.createdAt.getTime() && 
+                         right.getTime() >= post.createdAt.getTime();
                 });
             }
 
-            if ("hashtags" in filter && Array.isArray(filter.hashtags)) 
+            if (Array.isArray(filter.hashtags)) 
             {
                 result = posts.filter(function(post) 
                 {
                     for (let hashtag of post.hashtags)
                     {
-                        if(!post.deleted && filter.hashtags.indexOf(hashtag) != -1)
+                        if(filter.hashtags.indexOf(hashtag) != -1)
                         {
                             return true;
                         }
@@ -124,90 +88,31 @@
     {
         return posts.find(function(post) 
         {
-            return !post.deleted && post.id == id;
+            return post.id == id;
         });
     }
 
 
     function validatePhotoPost(postToCheck)
     {
-        function isValid(check)
-        {
-            return check !== null && typeof check !== "undefined";
-        }
+      //
+        return typeof postToCheck.id === 'string' &&
+               !posts.find(function(post){return postToCheck.id === post.id}) &&
 
-               /*console.log("id" in postToCheck &&
-               isValid(postToCheck.id) &&
-               typeof postToCheck.id == "string" &&
-               !posts.find(function(post){return postToCheck.id == post.id}));
-
-               console.log("description" in postToCheck &&
-               isValid(postToCheck.description) &&
-               typeof postToCheck.description == "string" &&
-               postToCheck.description.length <= 200);
-
-               console.log("author" in postToCheck &&
-               isValid(postToCheck.author) &&
-               typeof postToCheck.author == "string" && 
-               postToCheck.author.length != 0);
-
-               console.log("photoLink" in postToCheck &&
-               isValid(postToCheck.photoLink) &&
-               typeof postToCheck.photoLink == "string");
-
-               console.log("createdAt" in postToCheck &&
-               isValid(postToCheck.createdAt) &&
-               postToCheck.createdAt instanceof Date && 
-               postToCheck.createdAt.toString() != "Invalid Date");
-
-               console.log("hashtags" in postToCheck &&
-               isValid(postToCheck.hashtags) &&
-               Array.isArray(postToCheck.hashtags));
-
-               console.log("liked" in postToCheck && 
-               isValid(postToCheck.liked) &&
-               Array.isArray(postToCheck.liked));
-
-               console.log("deleted" in postToCheck &&
-               isValid(postToCheck.deleted) &&
-               typeof postToCheck.deleted == "boolean");*/
-
-
-        return "id" in postToCheck &&
-               isValid(postToCheck.id) &&
-               typeof postToCheck.id === "string" &&
-               !posts.find(function(post){return postToCheck.id == post.id}) &&
-
-               "description" in postToCheck &&
-               isValid(postToCheck.description) &&
-               typeof postToCheck.description === "string" &&
+               typeof postToCheck.description === 'string' &&
                postToCheck.description.length <= 200 &&
 
-               "author" in postToCheck &&
-               isValid(postToCheck.author) &&
-               typeof postToCheck.author === "string" && 
-               postToCheck.author.length != 0 &&
+               typeof postToCheck.author === 'string' && 
+               postToCheck.author.length !== 0 &&
 
-               "photoLink" in postToCheck &&
-               isValid(postToCheck.photoLink) &&
-               typeof postToCheck.photoLink === "string" && 
+               typeof postToCheck.photoLink === 'string' && 
 
-               "createdAt" in postToCheck &&
-               isValid(postToCheck.createdAt) &&
                postToCheck.createdAt instanceof Date && 
-               postToCheck.createdAt.toString() != "Invalid Date" &&
+               postToCheck.createdAt.toString() !== 'Invalid Date' &&
 
-               "hashtags" in postToCheck &&
-               isValid(postToCheck.hashtags) &&
                Array.isArray(postToCheck.hashtags) &&
 
-               "liked" in postToCheck && 
-               isValid(postToCheck.liked) &&
-               Array.isArray(postToCheck.liked) &&
-
-               "deleted" in postToCheck &&
-               isValid(postToCheck.deleted) &&
-               typeof postToCheck.deleted == "boolean";
+               Array.isArray(postToCheck.liked);
     }
 
 
@@ -215,7 +120,6 @@
     {
         if (validatePhotoPost(post))
         {
-            post.deleted = false;
             posts.push(post);
             return true;
         }
@@ -231,53 +135,39 @@
         toEdit = getPhotoPost(id);
         if(toEdit)
         {
-            if("description" in photoPost && 
-                typeof photoPost.description === "string" &&
+            if( typeof photoPost.description === 'string' &&
                 photoPost.description.length <= 200)
             {
                 toEdit.description = photoPost.description;
             }
-            if("photoLink" in photoPost && typeof photoPost.photoLink === "string")
+            if(typeof photoPost.photoLink === 'string')
             {
                 toEdit.photoLink = photoPost.photoLink;
             }
-            if("hashtags" in photoPost && Array.isArray(photoPost.hashtags))
+            if(Array.isArray(photoPost.hashtags))
             {
                 temp = [];
+
                 for(let hashtag of photoPost.hashtags)
                 {
-                    if(typeof hashtag === "string" && hashtag.length > 1)
+                    if(typeof hashtag === 'string' && hashtag.length > 1)
                     {
                         temp.push(hashtag);
                     }
                 }
                 toEdit.hashtags = temp;
             }
-
-            return true;
-        }
-        return false;
-    }
-
-    function removePhotoPost(id)
-    {
-        var found;
-
-        found = posts.findIndex(function(post){return post.id == id;});
-        if(found != -1)
-        {
-            posts[found].deleted = true;
             return true;
         }
         return false;
     }
     
-    function removePhotoPostHard(id) 
+    function removePhotoPost(id) 
     {
         var found;
 
         found = posts.findIndex(function(post){return post.id == id;});
-        if(found != -1)
+        if(found !== -1)
         {
             posts.splice(found, 1);
             return true;
@@ -291,7 +181,6 @@
         addPhotoPost,
         editPhotoPost,
         removePhotoPost,
-        removePhotoPostHard,
     }
 })();
     

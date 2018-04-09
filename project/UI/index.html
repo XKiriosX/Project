@@ -17,10 +17,10 @@
 		<title>Memesdise</title>
 	</head>
 
-	<body">
+	<body>
         <header id="header">
             <div class="logo-ico">
-                <img class="ico" src="pictures/yoba-red.png" alt="logo-ico">
+                <img class="ico" src="pictures/yoba-red.png" alt="logo-ico"/>
             </div>
 
             <div class="logo">
@@ -28,48 +28,53 @@
             </div>
         </header>
 
-        <hr>
+        <hr/>
 
         <main>
             <div class="filter">
                 <solid>Filter</solid>
-                <form class="filter-form">
-                    <input type="checkbox" id="author-check"> Author<br>
-                    <textarea id="author-field"></textarea><br>
+                <form class="filter-form" id="filter">
 
-                    <input type="checkbox" id="date-check"> Date<br>                    
-                    <textarea id="date-field"></textarea><br>
+                    <input type="checkbox" name="author" id="author-check"/> Author<br/>
+                    <textarea id="author-field"></textarea><br/>
+
+                    <input type="checkbox" name="date" id="date-check"/> Date<br/>
+                    <input type="date" id="date"/><br/>
                     
-                    <input type="checkbox" id="hashtag-check"> Hashtag<br>
-                    <textarea id="hashtag-field"></textarea><br>
+                    <input type="checkbox" name="hashtags" id="hashtag-check"> Hashtag<br/>
+                    <textarea id="hashtag-field"></textarea><br/>
 
-                    <input type="submit" value="Set filter">
-                    <input type="reset" value="Reset filter">
+                    <input type="submit" name="submit" value="Set filter"/>
+                    <input type="reset" name="reset" value="Reset filter"/>
                 </form>
             </div>
 
             <div class="contents">
                 <button class="add-new">Share your meme...</button>
 
-                <div class="wall" id="wall">
+                <button class="load-more">load previous 10</button>
+
+                <div id="wall">
                 </div>
 
-                <button class="load-more">load 10 more</button>
+                <button class="load-more">load next 10</button>
             </div>
+
         </main>
 
-        <hr>
+        <hr/>
 
-        <footer class="post-">
+        <footer>
             <p>portal Memesdise</p>
             <p>Vladimir Deikun, 2 course 6 group</p>
             <p>Contacts: vladimir.deikun1999@gmail.com</p>
             <p>Last changed: March 2018 </p>
         </footer>
 
+        <script src="scripts/events.js"></script>
         <script src="scripts/photos.js"></script>
         <script src="scripts/DOM.js"></script>
-    
-</body>
+
+    </body>
 
 </html>
